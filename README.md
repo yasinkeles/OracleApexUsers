@@ -12,9 +12,43 @@
 #### Yetkilendirmeleri kontrol edecek bir fonksiyon oluşturuyoruz .(CHECK_USER)
 
 ![image](https://github.com/user-attachments/assets/d22bb828-a687-4e6c-b8cf-8dbb4d2a598f)
+```
+create or replace FUNCTION           CHECK_USER(
+    p_username IN VARCHAR2,
+    p_password IN VARCHAR2
+) RETURN BOOLEAN AS
+    l_count NUMBER := 0;
+BEGIN
+    -- Debug log ekleyelim
+    --DBMS_OUTPUT.PUT_LINE('Kontrol edilen kullanıcı: ' || p_username);
+    
+    SELECT COUNT(*)
+    INTO l_count
+    FROM DASHBOARD.USERS
+    WHERE USERNAME = p_username
+      AND PASSWORD = p_password;
 
+    IF APEX_UTIL.IS_LOGIN_PASSWORD_VALID (
+        p_username => p_username,
+        p_password => p_password
+        ) THEN
+        return true;
+    END IF;
 
-#### Yetkilendirmelerin geçerli olacağı uygulamada bir Authorization Schemes oluşturuyoruz .(CHECK_USER)
+    IF l_count > 0 THEN
+        --DBMS_OUTPUT.PUT_LINE('Kullanıcı bulundu: ' || p_username);
+        RETURN TRUE;
+    ELSE
+        --DBMS_OUTPUT.PUT_LINE('Kullanıcı bulunamadı: ' || p_username);
+        null;
+    END IF;
+
+    RETURN FALSE;
+END;
+/
+```
+
+#### Yetkilendirmelerin geçerli olacağı uygulamada bir Authorization Schemes oluşturuyoruz .
 
 ![image](https://github.com/user-attachments/assets/9605a969-33b4-4d2b-8a37-8d13ce2c2992)
 
