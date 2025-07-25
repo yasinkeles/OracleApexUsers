@@ -99,3 +99,8 @@ AND IS_ADMIN = 'Yes';
 
 ![image](https://github.com/user-attachments/assets/8ff6f368-6293-4c5b-b30c-6ef22d48b8d6)
 ![image](https://github.com/user-attachments/assets/04f9fc17-aa07-4b43-9673-d4e39834f47e)
+
+#### son olarak bir Autentication şema oluşturup sql imizi gösterip varsayılan yapıyoruz
+
+<img width="1720" height="1245" alt="Edit-Authentication-Scheme-07-25-2025_02_46_PM" src="https://github.com/user-attachments/assets/6784e282-28ca-41c3-af52-f357cd1e9bab" />
+
