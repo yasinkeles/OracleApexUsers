@@ -104,3 +104,10 @@ AND IS_ADMIN = 'Yes';
 
 <img width="1720" height="1245" alt="Edit-Authentication-Scheme-07-25-2025_02_46_PM" src="https://github.com/user-attachments/assets/6784e282-28ca-41c3-af52-f357cd1e9bab" />
 
+create or replace TRIGGER TRG_USERS_UPPERCASE_USERNAME
+BEFORE INSERT OR UPDATE ON "DASHBOARD"."USERS"
+FOR EACH ROW
+BEGIN
+  :NEW."USERNAME" := UPPER(:NEW."USERNAME");
+END;
+/
